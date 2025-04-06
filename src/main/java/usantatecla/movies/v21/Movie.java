@@ -2,6 +2,8 @@ package usantatecla.movies.v21;
 
 public abstract class Movie {
 
+	private static final int FREQUENT_RENTER_POINTS = 1;
+
     private String title;
 
     public Movie(String title) {
@@ -10,7 +12,9 @@ public abstract class Movie {
 
     public abstract double getCharge(int daysRented);
 
-    public abstract int getFrequentRenterPoints(int daysRented);
+    public int getFrequentRenterPoints(int daysRented) {
+		return FREQUENT_RENTER_POINTS;
+	}
 
     public String getTitle() {
         return title;
