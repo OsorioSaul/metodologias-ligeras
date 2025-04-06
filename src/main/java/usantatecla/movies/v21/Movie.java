@@ -2,29 +2,31 @@ package usantatecla.movies.v21;
 
 public class Movie {
 
-	private String title;
-	
-	private Price price;
-	
-	public Movie(String title, Price price) {
-		this.title = title;
-		this.price = price;
+	private static final int FREQUENT_RENTER_POINTS = 1;
+    private static final double CHARGE = 2.0;
+    private static final double EXTRA_CHARGE = 1.5;
+    private static final int DAYS_RENTED_THRESHOLD = 2;
+
+    private String title;
+
+    public Movie(String title) {
+        this.title = title;
+    }
+
+    public double getCharge(int daysRented) {
+        double result = Movie.CHARGE;
+		if (daysRented > Movie.DAYS_RENTED_THRESHOLD) {
+			result += (daysRented - Movie.DAYS_RENTED_THRESHOLD) * Movie.EXTRA_CHARGE;
+		}
+		return result;
+    };
+
+    public int getFrequentRenterPoints(int daysRented) {
+		return FREQUENT_RENTER_POINTS;
 	}
-	
-	public double getCharge(int daysRented) {
-		return price.getCharge(daysRented);
-	}
-	
-	public int getFrequentRenterPoints(int daysRented) {
-		return price.getFrequentRenterPoints(daysRented);
-	}
-	
-	public void setPrice(Price price) {
-		this.price = price;
-	}
-	
-	public String getTitle() {
-		return title;
-	}
-	
+
+    public String getTitle() {
+        return title;
+    }
+
 }
