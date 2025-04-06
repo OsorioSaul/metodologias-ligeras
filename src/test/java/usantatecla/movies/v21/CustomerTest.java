@@ -7,15 +7,34 @@ import org.junit.Test;
 public class CustomerTest {
 
 	@Test
-	public void withoutRentalsTest() {
+	public void amountWithoutRentalsTest() {
 		String customerName = "customerName";
 		Customer customer = new CustomerBuilder().name(customerName).build();
 
-		String statement = customer.statement();
+		double expectedAmount = 0;
+		double actualAmount = customer.getTotalCharge();
+		assertEquals(expectedAmount, actualAmount, 0.001);
+	}
 
-		String result = new StatementBuilder().customerName(customerName)
-				.totalAmount(0).frequentRenterPoints(0).build();
-		assertEquals(result, statement);
+	@Test
+	public void frequentRenterPointsWithoutRentalsTest() {
+		String customerName = "customerName";
+		Customer customer = new CustomerBuilder().name(customerName).build();
+
+		int expectedFrequentRenterPoints = 0;
+		int actualFrequentRenterPoints = customer.getTotalFrequentRenterPoints();
+		assertEquals(expectedFrequentRenterPoints, actualFrequentRenterPoints);
+	}
+
+	@Test
+	public void statementWithoutRentalsTest() {
+		String customerName = "customerName";
+		String expectedStatement = new StatementBuilder()
+				.customerName(customerName)
+				.build();
+		Customer customer = new CustomerBuilder().name(customerName).build();
+		String actualStatement = customer.statement();
+		assertEquals(expectedStatement, actualStatement);
 	}
 
 	@Test
